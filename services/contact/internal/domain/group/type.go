@@ -3,8 +3,10 @@ package group
 import (
 	"time"
 
-	"architecture_go/services/contact/internal/domain/group/name"
 	"github.com/google/uuid"
+
+	"architecture_go/services/contact/internal/domain/group/description"
+	"architecture_go/services/contact/internal/domain/group/name"
 )
 
 type Group struct {
@@ -12,21 +14,29 @@ type Group struct {
 	createdAt    time.Time
 	modifiedAt   time.Time
 	name         name.Name
+	description  description.Description
 	contactCount uint64
 }
 
-func NewWithID(id uuid.UUID, name name.Name, contactCount uint64) *Group {
+func NewWithID(id uuid.UUID, createdAt time.Time, modifiedAt time.Time, name name.Name, description description.Description, contactCount uint64) *Group {
 	return &Group{
 		id:           id,
+		createdAt:    createdAt.UTC(),
+		modifiedAt:   modifiedAt.UTC(),
 		name:         name,
+		description:  description,
 		contactCount: contactCount,
 	}
 }
 
-func New(name name.Name) *Group {
+func New(name name.Name, description description.Description) *Group {
+	var timeNow = time.Now().UTC()
 	return &Group{
-		id:   uuid.New(),
-		name: name,
+		id:          uuid.New(),
+		name:        name,
+		description: description,
+		createdAt:   timeNow,
+		modifiedAt:  timeNow,
 	}
 }
 
@@ -48,4 +58,8 @@ func (g Group) ModifiedAt() time.Time {
 
 func (g Group) Name() name.Name {
 	return g.name
+}
+
+func (g Group) Description() description.Description {
+	return g.description
 }

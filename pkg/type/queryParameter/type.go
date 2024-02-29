@@ -8,4 +8,5 @@ import (
 type QueryParameter struct {
 	Sorts      sort.Sorts
 	Pagination pagination.Pagination
+	/*Тут можно добавить фильтр*/
 }

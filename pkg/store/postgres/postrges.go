@@ -100,18 +100,18 @@ func New(settings Settings) (*Store, error) {
 
 	config, err := pgxpool.ParseConfig(settings.toDSN())
 	if err != nil {
-		return nil, errors.WithStack(err)
+		return nil, err
 	}
 
 	conn, err := pgxpool.ConnectConfig(context.Background(), config)
 	if err != nil {
-		return nil, errors.WithStack(err)
+		return nil, err
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
 	defer cancel()
 	if err = conn.Ping(ctx); err != nil {
-		return nil, errors.WithStack(err)
+		return nil, err
 	}
 
 	return &Store{Pool: conn}, nil

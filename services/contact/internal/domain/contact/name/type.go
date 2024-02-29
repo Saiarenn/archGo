@@ -1,4 +1,4 @@
-package firstname
+package name
 
 import "github.com/pkg/errors"
 
@@ -7,16 +7,16 @@ var (
 	ErrWrongLength = errors.Errorf("name must be less than or equal to %d characters", MaxLength)
 )
 
-type Firstname string
+type Name string
 
-func (n Firstname) String() string {
+func (n Name) String() string {
 	return string(n)
 }
 
-func New(firstname string) (*Firstname, error) {
-	if len([]rune(firstname)) > MaxLength {
+func New(name string) (*Name, error) {
+	if len([]rune(name)) > MaxLength {
 		return nil, ErrWrongLength
 	}
-	n := Firstname(firstname)
+	n := Name(name)
 	return &n, nil
 }

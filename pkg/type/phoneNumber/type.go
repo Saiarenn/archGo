@@ -25,15 +25,3 @@ func (p PhoneNumber) Equal(phoneNumber PhoneNumber) bool {
 func (p PhoneNumber) IsEmpty() bool {
 	return len(strings.TrimSpace(p.value)) == 0
 }
-
-func getNumbers(input string) string {
-	var number string
-
-	for _, t := range input {
-		if t >= 48 && t <= 57 {
-			number += string(t)
-		}
-	}
-
-	return number
-}

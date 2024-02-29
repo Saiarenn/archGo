@@ -1,4 +1,4 @@
-package middlename
+package patronymic
 
 import "github.com/pkg/errors"
 
@@ -7,16 +7,16 @@ var (
 	ErrWrongLength = errors.Errorf("patronymic must be less than or equal to %d characters", MaxLength)
 )
 
-type Middlename string
+type Patronymic string
 
-func (p Middlename) String() string {
+func (p Patronymic) String() string {
 	return string(p)
 }
 
-func New(middlename string) (*Middlename, error) {
-	if len([]rune(middlename)) > MaxLength {
+func New(patronymic string) (*Patronymic, error) {
+	if len([]rune(patronymic)) > MaxLength {
 		return nil, ErrWrongLength
 	}
-	p := Middlename(middlename)
+	p := Patronymic(patronymic)
 	return &p, nil
 }

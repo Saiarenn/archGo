@@ -9,6 +9,16 @@ import (
 	"architecture_go/services/contact/internal/useCase"
 )
 
+// @title slurm contact service on clean architecture
+// @version 1.0
+// @description contact service on clean architecture
+// @license.name kolyadkons
+
+// @contact.name API Support
+// @contact.email kolyadkons@gmail.com
+
+// @BasePath /
+
 func init() {
 	viper.SetConfigName(".env")
 	viper.SetConfigType("dotenv")
